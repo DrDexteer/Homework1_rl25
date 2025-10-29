@@ -1,34 +1,31 @@
-# Overview
-This is an example package on how to use sensors and controllers in the ROS2/Gazebo environment.
+# armando_gazebo
 
-# Requirements
-This package depends on `iiwa_description`, which can be downloaded from the `ros2_iiwa_description` repository. Make sure to also use the updated `Dockerfile`, which includes the packages for `Gazebo Ignition` and for the use of controllers and sensors.
+This package provides the **launch files** to simulate and visualize the **Armando** robot in Gazebo (Ignition / GZ Sim) and RViz.  
+It also handles the spawning of controllers through `ros2_control` and bridges image topics from Gazebo to ROS 2.
+
+
+# Overview
+
+When launched, the system:
+1. Loads the robot model from `armando_description` using Xacro  
+2. Starts **Gazebo** with an empty world (`empty.sdf`)  
+3. Spawns the **Armando** robot entity into the world  
+4. Loads and starts the following controllers:
+   - `joint_state_broadcaster`
+   - `position_controller` or `joint_trajectory_controller`
+5. Opens **RViz** for visualization  
+6. Launches a **camera bridge** between Gazebo and ROS 2 topics
+
+---
 
 # How to launch
-The example can be launched using
 
-```
-ros2 launch ros2_sensors_and_actuators iiwa.launch.py
-```
-
-# How to control
-If you are using the `position_controller` for the joints, you can set the position references using a message like
-```
-ros2 topic pub /position_controller/commands std_msgs/msg/Float64MultiArray "{
-  data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-}"
+```bash
+# to run simulation with position_controller configured and activated
+ros2 launch armando_gazebo armando_world.launch.py controller_type:=position
 ```
 
-If instead you are using the `joint_trajectory_controller`, the message can be sent from the command line like this
-```
-ros2 topic pub /joint_trajectory_controller/joint_trajectory trajectory_msgs/msg/JointTrajectory "{ 
-  joint_names: ['joint_a1', 'joint_a2', 'joint_a3', 'joint_a4', 'joint_a5', 'joint_a6', 'joint_a7'], 
-  points: [
-    {
-      positions: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 
-      velocities: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 
-      time_from_start: { sec: 2, nanosec: 0 }
-    }
-  ] 
-}"
+```bash
+# to run simulation with joint_trajectory_controller configured and activated
+ros2 launch armando_gazebo armando_world.launch.py controller_type:=trajectory
 ```

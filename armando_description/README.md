@@ -1,31 +1,35 @@
-# Homework1 (ROS 2 Humble)
-
-This workspace contains three ROS 2 packages developed for the first homework of the Robotics Lab course:
-
-- **armando_description** — URDF/Xacro model and robot resources  
-- **armando_gazebo** — Launch and configuration files for simulation in Gazebo (Ignition/GZ)  
-- **armando_controller** — C++ node for joint control in position or trajectory mode  
+# Overview
+This package contains the URDF/Xacro description of the **Armando** robot, used for both visualization and simulation.
 
 ---
 
-## 🧩 Requirements
-- ROS 2 Humble
-- `colcon`, `rosdep`
-- `gazebo_ros` / `gazebo` (Ignition / GZ Sim)
-- Standard packages:  
-  `robot_state_publisher`, `joint_state_publisher(_gui)`,  
-  `trajectory_msgs`, `sensor_msgs`, `std_msgs`
+# 📂 Contents
+- `urdf/arm.urdf.xacro` — Main robot model
+- `urdf/armando_hardware_interface.xacro` — Main robot model  
+- `meshes/` — Meshes for visual and collision geometry  
+- `config/rviz/rviz_config.rviz` — config file for RViz
+- `config/controllers.yaml` — controllers configuration file
 
 ---
 
-## ⚙️ Build Instructions
-Clone this repository inside the `src` folder of your ROS 2 workspace, install dependencies, and build:
+# How to launch
+The package can be launched using
+
+```
+ros2 launch armando_description armando_display.launch.py 
+```
+
+# Inspecting the running system
+
+After launching the robot, you can open another terminal and use ROS 2 tools
+to inspect the running nodes, topics, and their connections.
 
 ```bash
-cd ~/ros2_ws
-git clone https://github.com/DrDexteer/Homework1_rl25.git src/Homework1
-rosdep update
-rosdep install -i --from-path src --rosdistro humble -y
-colcon build --symlink-install
-. install/setup.bash
+# Visualize the node graph
+rqt_graph
 
+# List all active nodes
+ros2 node list
+
+# List all active topics
+ros2 topic list

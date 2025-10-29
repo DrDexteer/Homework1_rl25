@@ -1,35 +1,32 @@
-# Homework1 
+# armando_gazebo
 
-This repo contains three ROS 2 packages developed for the first homework of the Robotics Lab course:
+This package provides the **launch files** to simulate and visualize the **Armando** robot in Gazebo (Ignition / GZ Sim) and RViz.  
+It also handles the spawning of controllers through `ros2_control` and bridges image topics from Gazebo to ROS 2.
 
----
-### 📂 Package Documentation
-Each package includes a dedicated `README.md`:
-| Package | Description |
-|----------|--------------|
-| [`armando_description`](armando_description/) | URDF/Xacro model and RViz visualization |
-| [`armando_gazebo`](armando_gazebo/) | Launch and Gazebo simulation setup |
-| [`armando_controller`](armando_controller/) | C++ controller node for position and trajectory control |
 
----
+# Overview
 
-##  Requirements
-- ROS 2 Humble
-- `colcon`, `rosdep`
-- `gazebo_ros` / `gazebo` (Ignition / GZ Sim)
-- Standard packages:  
-  `robot_state_publisher`, `joint_state_publisher(_gui)`,  
-  `trajectory_msgs`, `sensor_msgs`, `std_msgs`
+When launched, the system:
+1. Loads the robot model from `armando_description` using Xacro  
+2. Starts **Gazebo** with an empty world (`empty.sdf`)  
+3. Spawns the **Armando** robot entity into the world  
+4. Loads and starts the following controllers:
+   - `joint_state_broadcaster`
+   - `position_controller` or `joint_trajectory_controller`
+5. Opens **RViz** for visualization  
+6. Launches a **camera bridge** between Gazebo and ROS 2 topics
 
 ---
 
-##  Build Instructions
-Clone this repository inside the `src` folder of your ROS 2 workspace, install dependencies, and build:
+# How to launch
 
 ```bash
-  cd ~/ros2_ws
-  git clone https://github.com/DrDexteer/Homework1_rl25.git src/Homework1
-  rosdep update
-  rosdep install -i --from-path src --rosdistro humble -y
-  colcon build --symlink-install
-  . install/setup.bash
+# to run simulation with position_controller loaded
+ros2 launch armando_gazebo armando_world.launch.py controller_type:=positio
+
+---
+
+```bash
+# to run simulation with joint_trajectory_controller loaded
+ros2 launch armando_gazebo armando_world.launch.py controller_type:=trajectory
+

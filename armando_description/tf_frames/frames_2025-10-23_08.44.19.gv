@@ -1,0 +1,22 @@
+digraph G {
+"base_turn" -> "base_turn_rot"[label=" Broadcaster: default_authority\nAverage rate: 10.312\nBuffer length: 3.2\nMost recent transform: 1761209059.846461\nOldest transform: 1761209056.646386\n"];
+"base_link" -> "base_turn"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"dyn2" -> "dyn2_r"[label=" Broadcaster: default_authority\nAverage rate: 10.312\nBuffer length: 3.2\nMost recent transform: 1761209059.846461\nOldest transform: 1761209056.646386\n"];
+"base_turn_rot" -> "dyn2"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"dyn3" -> "dyn3_r"[label=" Broadcaster: default_authority\nAverage rate: 10.312\nBuffer length: 3.2\nMost recent transform: 1761209059.846461\nOldest transform: 1761209056.646386\n"];
+"f4" -> "dyn3"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"dyn4" -> "dyn4_r"[label=" Broadcaster: default_authority\nAverage rate: 10.312\nBuffer length: 3.2\nMost recent transform: 1761209059.846461\nOldest transform: 1761209056.646386\n"];
+"f5" -> "dyn4"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"crawer_base" -> "crawer_left"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"dyn5_r" -> "crawer_base"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"crawer_base" -> "crawer_right"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"dyn2_r" -> "f4"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"dyn3_r" -> "f5"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"dyn5" -> "dyn5_r"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"wrist" -> "dyn5"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"dyn4_r" -> "wrist"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1761209059.8662665"[ shape=plaintext ] ;
+}->"base_link";
+}

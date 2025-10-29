@@ -1,10 +1,6 @@
-# armando_gazebo
-
+# Overview
 This package provides the **launch files** to simulate and visualize the **Armando** robot in Gazebo (Ignition / GZ Sim) and RViz.  
 It also handles the spawning of controllers through `ros2_control` and bridges image topics from Gazebo to ROS 2.
-
-
-# Overview
 
 When launched, the system:
 1. Loads the robot model from `armando_description` using Xacro  
